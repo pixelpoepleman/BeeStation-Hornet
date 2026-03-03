@@ -337,3 +337,12 @@
 	if(.)
 		var/obj/item/stack/tile = .
 		tile.set_mats_per_unit(custom_materials, 1)
+
+/turf/open/floor/salvage_vals(obj/item/salvaging/the_laser)
+	return list("delay" = max_integrity * 0.05, "power" = max_integrity * 10)
+
+/turf/open/floor/salvage_act(mob/user, obj/item/salvaging/the_laser)
+	to_chat(user, span_notice("You melt the floor into slag!"))
+	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
+	ScrapeAway()
+	return TRUE

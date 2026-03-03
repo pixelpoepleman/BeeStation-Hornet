@@ -303,3 +303,19 @@
 	to_chat(user, span_notice("You finish repairing [src] with [tape]."))
 	repair_damage(tape.object_repair_value)
 	return TRUE
+
+/**
+ * Respond to a salvage laser acting on us
+ *
+ * Override to return duration in seconds and power cost in watts of the salvage action
+ */
+/atom/proc/salvage_vals(obj/item/salvaging/the_laser)
+	return null
+
+/**
+ * Respond to a salvage laser melting through us
+ *
+ * Override to set salvage value in the slag and deconstruct us
+ */
+/atom/proc/salvage_act(mob/user, obj/item/salvaging/the_laser)
+	return FALSE

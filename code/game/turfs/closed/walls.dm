@@ -254,3 +254,24 @@
 	return ..()
 
 #undef MAX_DENT_DECALS
+
+/turf/closed/wall/salvage_vals(obj/item/salvaging/the_laser)
+	return list("delay" = max_integrity * 0.05, "power" = max_integrity * 10)
+
+/turf/closed/wall/salvage_act(mob/user, obj/item/salvaging/the_laser)
+	var/obj/item/slag/slag = new /obj/item/slag(src)
+	var/obj/item/stack/sheet/temp = new sheet_type()
+	var/material_type = temp.material_type
+	qdel(temp)
+
+	if(material_type)
+		var/list/materials = list()
+		materials[material_type] = sheet_amount * MINERAL_MATERIAL_AMOUNT
+		slag.load_materials(materials)
+
+	to_chat(user, span_notice("You melt the wall into slag!"))
+	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
+	if(girder_type)
+		new girder_type(src)
+	ScrapeAway()
+	return TRUE

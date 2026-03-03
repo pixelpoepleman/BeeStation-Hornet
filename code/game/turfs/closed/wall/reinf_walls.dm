@@ -267,6 +267,8 @@
 		new /obj/effect/temp_visual/glowing_rune(src)
 	return ..()
 
+
+
 /turf/closed/wall/r_wall/syndicate
 	name = "hull"
 	desc = "The armored hull of an ominous looking ship."
