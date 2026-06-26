@@ -24,6 +24,7 @@
 	var/fulltile = FALSE
 	var/glass_type = /obj/item/stack/sheet/glass
 	var/glass_amount = 1
+	var/list/salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	var/mutable_appearance/crack_overlay
 	var/real_explosion_block	//ignore this, just use explosion_block
 	var/breaksound = "shatter"
@@ -422,6 +423,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/unanchored/spawner, 0)
 	max_integrity = 100
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/rglass
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	rad_insulation = RAD_HEAVY_INSULATION
 	ricochet_chance_mod = 0.8
 
@@ -458,6 +460,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/corner/unanchored/s
 	armor_type = /datum/armor/window_plasma
 	max_integrity = 300
 	glass_type = /obj/item/stack/sheet/plasmaglass
+	salvage_material = 	list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.1)
 	rad_insulation = RAD_NO_INSULATION
 
 /obj/structure/window/plasma/Initialize(mapload)
@@ -508,6 +511,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/plasma/corner/unanchored/spawn
 	max_integrity = 500
 	explosion_block = 2
 	glass_type = /obj/item/stack/sheet/plasmarglass
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.1, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.5)
 
 /datum/armor/reinforced_plasma
 	melee = 85
@@ -568,6 +572,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 	max_integrity = 500
 	explosion_block = 2
 	glass_type = /obj/item/stack/sheet/mineral/uranium
+	salvage_material = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	rad_insulation = RAD_FULL_INSULATION
 
 /datum/armor/depleted_uranium
@@ -727,6 +732,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/depleteduranium/corner/unancho
 	armor_type = /datum/armor/window_shuttle
 	explosion_block = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT, /datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5)
 	glass_amount = 2
 	ricochet_chance_mod = 0.9
 
@@ -767,6 +773,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/depleteduranium/corner/unancho
 	armor_type = /datum/armor/window_plastitanium
 	explosion_block = 3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.1, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	glass_amount = 2
 
 
@@ -795,6 +802,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/depleteduranium/corner/unancho
 	obj_flags = CAN_BE_HIT
 	glass_amount = 2
 	glass_type = /obj/item/stack/sheet/paperframes
+	salvage_material = list(null)
 	heat_resistance = 233
 	decon_speed = 10
 	can_atmos_pass = ATMOS_PASS_YES
@@ -867,6 +875,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/depleteduranium/corner/unancho
 	icon = 'icons/obj/smooth_structures/windows/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	glass_type = /obj/item/stack/sheet/bronze
+	salvage_material = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.5)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/bronze/spawner, 0)
 
@@ -899,3 +908,24 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/bronze/corner/spawner, 0)
 	anchored = FALSE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/bronze/corner/unanchored/spawner, 0)
+
+/obj/structure/window/salvage_vals(obj/item/salvaging/the_laser)
+	if(!salvage_material)
+		return FALSE
+	return list("delay" = max_integrity * 0.05, "power" = max_integrity * 10)
+
+/obj/structure/window/salvage_act(mob/user, obj/item/salvaging/the_laser)
+
+	if(salvage_material)
+		var/obj/item/slag/slag = new /obj/item/slag(drop_location())
+		var/list/materials = list()
+
+		for(var/material in salvage_material)
+			materials[material] = salvage_material[material] * glass_amount
+
+		slag.set_custom_materials(materials)
+
+	to_chat(user, span_notice("You melt the [src] into slag!"))
+	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
+	qdel(src)
+	return TRUE

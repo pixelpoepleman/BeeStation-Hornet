@@ -20,6 +20,7 @@
 	icon_state = "gold_wall-0"
 	base_icon_state = "gold_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/gold
+	salvage_material = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
 	explosion_block = 0 //gold is a soft metal you dingus.
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_GOLD_WALLS)
@@ -33,6 +34,7 @@
 	icon_state = "silver_wall-0"
 	base_icon_state = "silver_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/silver
+	salvage_material = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_SILVER_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_SILVER_WALLS)
@@ -44,6 +46,7 @@
 	icon = 'icons/turf/walls/copper_wall.dmi'
 	icon_state = "copper"
 	sheet_type = /obj/item/stack/sheet/mineral/copper
+	salvage_material = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT)
 	icon_state = "copper_wall-0"
 	base_icon_state = "copper_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -58,6 +61,7 @@
 	icon_state = "diamond_wall-0"
 	base_icon_state = "diamond_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
+	salvage_material = null //You wanted to melt diamond?
 	slicing_duration = 200   //diamond wall takes twice as much time to slice
 	explosion_block = 3
 	smoothing_flags = SMOOTH_BITMASK
@@ -73,6 +77,7 @@
 	icon_state = "bananium_wall-0"
 	base_icon_state = "bananium_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
+	salvage_material = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_BANANIUM_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BANANIUM_WALLS)
@@ -85,6 +90,7 @@
 	icon_state = "sandstone_wall-0"
 	base_icon_state = "sandstone_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/sandstone
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT) //sandstone is made of glass, so it can be slagged into glass
 	explosion_block = 0
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_SANDSTONE_WALLS)
@@ -100,6 +106,7 @@
 	icon_state = "uranium_wall-0"
 	base_icon_state = "uranium_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
+	salvage_material = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_URANIUM_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_URANIUM_WALLS)
@@ -142,6 +149,7 @@
 	icon_state = "plasma_wall-0"
 	base_icon_state = "plasma_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
+	salvage_material = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.2) //Very purposefully reducing the amount of plasma salvaged by slagging
 	thermal_conductivity = 0.04
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_PLASMA_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_PLASMA_WALLS)
@@ -172,6 +180,7 @@
 	icon_state = "wood_wall-0"
 	base_icon_state = "wood_wall"
 	sheet_type = /obj/item/stack/sheet/wood
+	salvage_material = null //Just burns the wood, you can't slag it.
 	hardness = 70
 	explosion_block = 0
 	smoothing_flags = SMOOTH_BITMASK
@@ -202,6 +211,7 @@
 	icon_state = "bamboo-0"
 	base_icon_state = "bamboo"
 	sheet_type = /obj/item/stack/sheet/bamboo
+	salvage_material = null //You wanted to slag bamboo?
 	hardness = 60
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_BAMBOO_WALLS)
@@ -217,6 +227,7 @@
 	base_icon_state = "iron_wall"
 	sheet_type = /obj/item/stack/rods
 	sheet_amount = 5
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.5) //Rods are half a sheet of iron
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_IRON_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_IRON_WALLS)
@@ -232,7 +243,7 @@
 	explosion_block = 0
 	slicing_duration = 30
 	sheet_type = /obj/item/stack/sheet/snow
-
+	salvage_material = null //you wanted to slag snow?
 	girder_type = null
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null
@@ -247,6 +258,7 @@
 	icon_state = "abductor_wall-0"
 	base_icon_state = "abductor_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/abductor
+	salvage_material = null //I just think you should slag this for balance reasons
 	slicing_duration = 200   //alien wall takes twice as much time to slice
 	explosion_block = 3
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
@@ -267,6 +279,7 @@
 	flags_1 = CAN_BE_DIRTY_1
 	flags_ricochet = RICOCHET_SHINY | RICOCHET_HARD
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_TITANIUM_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_TITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
@@ -337,6 +350,7 @@
 	base_icon_state = "plastitanium_wall"
 	explosion_block = 4
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.2)
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_PLASTITANIUM_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_SYNDICATE_WALLS, SMOOTH_GROUP_PLASTITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)

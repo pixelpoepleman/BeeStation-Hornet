@@ -1,6 +1,7 @@
 /turf/open/floor/iron
 	icon_state = "floor"
 	floor_tile = /obj/item/stack/tile/iron/base
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.25)
 
 /turf/open/floor/iron/get_turf_texture()
 	return GLOB.turf_texture_iron

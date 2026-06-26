@@ -14,6 +14,7 @@
 	var/d_state = INTACT
 	hardness = 10
 	sheet_type = /obj/item/stack/sheet/plasteel
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.2)
 	sheet_amount = 1
 	girder_type = /obj/structure/girder/reinforced
 	explosion_block = 2
@@ -280,7 +281,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_SYNDICATE_WALLS, SMOOTH_GROUP_PLASTITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
 	explosion_block = 20
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
-
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.2)
 /turf/closed/wall/r_wall/syndicate/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	return FALSE
 

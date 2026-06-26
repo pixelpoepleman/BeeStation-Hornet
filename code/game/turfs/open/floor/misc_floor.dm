@@ -15,6 +15,8 @@
 	/// If this floor is powered or not
 	/// We don't consume any power, but we do require it
 	var/on = -1
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.4, /datum/material/glass=MINERAL_MATERIAL_AMOUNT * 0.4)
+	var/on = TRUE
 
 /turf/open/floor/circuit/Initialize(mapload)
 	SSmapping.nuke_tiles += src
@@ -137,6 +139,7 @@
 	name = "pod floor"
 	icon_state = "podfloor"
 	floor_tile = /obj/item/stack/tile/pod
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.25)
 
 /turf/open/floor/pod/light
 	icon_state = "podfloor_light"
@@ -151,6 +154,7 @@
 	name = "high-traction floor"
 	icon_state = "noslip"
 	floor_tile = /obj/item/stack/tile/noslip
+	salvage_material = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT * 0.25)
 	slowdown = -0.3
 
 /turf/open/floor/noslip/Initialize(mapload)
@@ -215,6 +219,7 @@
 	desc = "Some heavy bronze tiles."
 	icon_state = "clockwork_floor"
 	floor_tile = /obj/item/stack/sheet/bronze
+	salvage_material = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT * 0.125, /datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.125)
 
 /turf/open/floor/bronze/flat
 	icon_state = "reebe"
@@ -240,6 +245,7 @@
 /turf/open/floor/monotile
 	icon_state = "grey_full"
 	floor_tile = /obj/item/stack/tile/mono
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.25)
 
 /turf/open/floor/monotile/steel
 	icon_state = "steel_monotile"
@@ -294,6 +300,7 @@
 	name = "sandstone floor"
 	icon_state = "sandstonevault"
 	base_icon_state = "sandstonevault"
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT * 0.25)
 
 /turf/open/floor/cult
 	name = "engraved floor"

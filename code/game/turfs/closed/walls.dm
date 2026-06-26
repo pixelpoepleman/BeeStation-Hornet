@@ -28,6 +28,7 @@
 	var/slicing_duration = 100  //default time taken to slice the wall
 	var/sheet_type = /obj/item/stack/sheet/iron
 	var/sheet_amount = 2
+	var/list/salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	var/girder_type = /obj/structure/girder
 	var/list/dent_decals
 	/// If we added a leaning component to ourselves
@@ -256,20 +257,21 @@
 #undef MAX_DENT_DECALS
 
 /turf/closed/wall/salvage_vals(obj/item/salvaging/the_laser)
+	if(!salvage_material)
+		return FALSE
 	return list("delay" = max_integrity * 0.05, "power" = max_integrity * 10)
 
 /turf/closed/wall/salvage_act(mob/user, obj/item/salvaging/the_laser)
-	var/obj/item/slag/slag = new /obj/item/slag(src)
-	var/obj/item/stack/sheet/temp = new sheet_type()
-	var/material_type = temp.material_type
-	qdel(temp)
-
-	if(material_type)
+	if(salvage_material)
+		var/obj/item/slag/slag = new /obj/item/slag(src)
 		var/list/materials = list()
-		materials[material_type] = sheet_amount * MINERAL_MATERIAL_AMOUNT
-		slag.load_materials(materials)
 
-	to_chat(user, span_notice("You melt the wall into slag!"))
+		for(var/material in salvage_material)
+			materials[material] = salvage_material[material] * sheet_amount
+
+		slag.set_custom_materials(materials)
+
+	to_chat(user, span_notice("You melt the [src] into slag!"))
 	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
 	if(girder_type)
 		new girder_type(src)

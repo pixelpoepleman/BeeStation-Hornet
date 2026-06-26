@@ -12,6 +12,7 @@
 	desc = "Flooring that shows its contents underneath. Engineers love it!"
 	baseturfs = /turf/open/floor/plating
 	floor_tile = /obj/item/stack/tile/catwalk_tile
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.25) //One sheet makes four tiles
 	layer = CATWALK_LAYER
 	footstep = FOOTSTEP_CATWALK
 	overfloor_placed = TRUE
@@ -90,6 +91,7 @@
 	name = "titanium plated catwalk floor"
 	icon_state = "titanium_above"
 	floor_tile = /obj/item/stack/tile/catwalk_tile/titanium
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.25) //One sheet makes four tiles
 	catwalk_type = "titanium"
 
 /turf/open/floor/catwalk_floor/titanium/alt

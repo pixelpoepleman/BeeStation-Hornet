@@ -16,6 +16,8 @@
 	max_integrity = 900
 	var/attachment_holes = TRUE
 
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.25)
+
 	/// If true, will allow tiles to replace us if the tile [wants to] [/obj/item/stack/tile/var/replace_plating].
 	/// And if our baseturfs are compatible.
 	/// See [/obj/item/stack/tile/proc/place_tile].

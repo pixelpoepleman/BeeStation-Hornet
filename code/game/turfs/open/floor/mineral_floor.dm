@@ -37,6 +37,7 @@
 	name = "plasma floor"
 	icon_state = "plasma"
 	floor_tile = /obj/item/stack/tile/mineral/plasma
+	salvage_material = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.05) //20% of 25%
 	icons = list("plasma","plasma_dam")
 	max_integrity = 200
 
@@ -69,6 +70,7 @@
 	name = "gold floor"
 	icon_state = "gold"
 	floor_tile = /obj/item/stack/tile/mineral/gold
+	salvage_material = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT * 0.25)
 	icons = list("gold","gold_dam")
 	max_integrity = 250
 
@@ -78,6 +80,7 @@
 	name = "silver floor"
 	icon_state = "silver"
 	floor_tile = /obj/item/stack/tile/mineral/silver
+	salvage_material = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT * 0.25)
 	icons = list("silver","silver_dam")
 	max_integrity = 300
 
@@ -87,6 +90,7 @@
 	name = "copper floor"
 	icon_state = "copper"
 	floor_tile = /obj/item/stack/tile/mineral/copper
+	salvage_material = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT * 0.25)
 	icons = list("copper","copper_dam")
 	max_integrity = 175
 
@@ -96,6 +100,7 @@
 	name = "shuttle floor"
 	icon_state = "titanium"
 	floor_tile = /obj/item/stack/tile/mineral/titanium
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.25)
 
 /turf/open/floor/mineral/titanium/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -170,6 +175,7 @@
 	name = "shuttle floor"
 	icon_state = "plastitanium"
 	floor_tile = /obj/item/stack/tile/mineral/plastitanium
+	salvage_material = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.25, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.05)
 
 /turf/open/floor/mineral/plastitanium/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -190,6 +196,7 @@
 	name = "bananium floor"
 	icon_state = "bananium"
 	floor_tile = /obj/item/stack/tile/mineral/bananium
+	salvage_material = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT * 0.25)
 	icons = list("bananium","bananium_dam")
 	custom_materials = list(/datum/material/bananium = 500)
 	material_flags = NONE //The slippery comp makes it unpractical for good clown decor. The custom mat one should still slip.
@@ -248,6 +255,7 @@
 	name = "uranium floor"
 	icon_state = "uranium"
 	floor_tile = /obj/item/stack/tile/mineral/uranium
+	salvage_material = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT * 0.25)
 	icons = list("uranium","uranium_dam")
 	max_integrity = 75
 	damage_deflection = 0

@@ -46,7 +46,7 @@ MHL
 	if(cell && !(. & EMP_PROTECT_CONTENTS))
 		cell.emp_act(severity)
 
-/// Open the cell cover when ALT+Click on the laser
+/// Open the cell cover when Alt+Click on the laser
 /obj/item/salvaging/AltClick(mob/living/user)
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
 		return ..()
@@ -58,7 +58,7 @@ MHL
 	to_chat(user, span_notice("You [cell_cover_open ? "open" : "close"] the cell cover on \the [src]."))
 	update_icon()
 
-/// Remove the cell when the cover is open on CTRL+Click
+/// Remove the cell when the cover is open on Ctrl+Click
 /obj/item/salvaging/CtrlClick(mob/living/user)
 	if(user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
 		if(cell_cover_open && cell)
@@ -132,12 +132,15 @@ MHL
 		to_chat(user, span_warning("The cell has insufficient charge."))
 		return
 
-	var/delay = salvage_results["delay"]
-	var/power_cost = salvage_results["power"]
+
 	to_chat(user, span_notice("You begin melting through [target]..."))
 
-	if(!do_after(user, delay, target = target))
+	if(!do_after(user, salvage_results["delay"], target = target))
 		return
 
-	cell.use(power_cost)
+	if(cell.charge < salvage_results["power"])
+		to_chat(user, span_warning("The cell craps out before the [src] can finish melting the [target]."))
+		return
+
+	cell.use(salvage_results["power"])
 	target.salvage_act(user,src)

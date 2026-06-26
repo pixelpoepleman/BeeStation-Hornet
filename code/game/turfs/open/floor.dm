@@ -17,6 +17,9 @@
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_OPEN_FLOOR)
 	canSmoothWith = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_OPEN_FLOOR)
 
+	var/list/salvage_material = null //Wont let the floor be salvaged unless this is overridden per floor
+
+
 	thermal_conductivity = 0.02
 	heat_capacity = 20000
 	tiled_dirt = TRUE
@@ -339,10 +342,21 @@
 		tile.set_mats_per_unit(custom_materials, 1)
 
 /turf/open/floor/salvage_vals(obj/item/salvaging/the_laser)
+	if(!salvage_material)
+		return FALSE
 	return list("delay" = max_integrity * 0.05, "power" = max_integrity * 10)
 
 /turf/open/floor/salvage_act(mob/user, obj/item/salvaging/the_laser)
-	to_chat(user, span_notice("You melt the floor into slag!"))
+	if(salvage_material)
+		var/obj/item/slag/slag = new /obj/item/slag(src)
+		var/list/materials = list()
+
+		for(var/material in salvage_material)
+			materials[material] = salvage_material[material]
+
+		slag.set_custom_materials(materials)
+
+	to_chat(user, span_notice("You melt the [src] into slag!"))
 	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
 	ScrapeAway()
 	return TRUE

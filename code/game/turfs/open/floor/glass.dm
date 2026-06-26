@@ -14,6 +14,7 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	floor_tile = /obj/item/stack/tile/glass
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT * 0.25)
 	overfloor_placed = FALSE
 	z_flags = Z_MIMIC_DEFAULTS
 
@@ -49,6 +50,7 @@
 	icon_state = "reinf_glass-0"
 	base_icon_state = "reinf_glass"
 	floor_tile = /obj/item/stack/tile/rglass
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT * 0.25, /datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.125)
 
 /turf/open/floor/glass/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -63,6 +65,7 @@
 	icon_state = "plasma_glass-0"
 	base_icon_state = "plasma_glass"
 	floor_tile = /obj/item/stack/tile/glass/plasma
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT * 0.25) //Half a sheet of plasma for four tiles, then take 20% of that. Its such a small amount that its trivial.
 	heat_capacity = INFINITY
 
 /turf/open/floor/glass/reinforced/plasma
@@ -72,4 +75,5 @@
 	icon_state = "reinf_plasma_glass-0"
 	base_icon_state = "reinf_plasma_glass"
 	floor_tile = /obj/item/stack/tile/rglass/plasma
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT * 0.25, /datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.125)
 	heat_capacity = INFINITY

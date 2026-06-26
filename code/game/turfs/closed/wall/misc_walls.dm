@@ -59,11 +59,13 @@
 	name = "alien wall"
 	icon_state = "alienvault"
 	base_icon_state = "alienvault"
+	salvage_material = null //I just think you should slag this for balance reasons
 
 /turf/closed/wall/vault/sandstone
 	name = "sandstone wall"
 	icon_state = "sandstonevault"
 	base_icon_state = "sandstonevault"
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT) //sandstone is made of glass, so it can be slagged into glass
 
 /turf/closed/wall/ice
 	icon = 'icons/turf/walls/icedmetal_wall.dmi'
@@ -118,6 +120,7 @@
 	icon_state = "clockwork_wall-0"
 	base_icon_state = "clockwork_wall"
 	sheet_type = /obj/item/stack/sheet/bronze
+	salvage_material = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.5)
 	sheet_amount = 2
 	girder_type = /obj/structure/girder/bronze
 

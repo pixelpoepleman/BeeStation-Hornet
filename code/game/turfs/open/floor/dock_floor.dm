@@ -4,6 +4,7 @@
 	desc = "Strong enough to hold a shuttle."
 	icon_state = "dock"
 	floor_tile = /obj/item/stack/tile/dock
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.25, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.05) //One sheet makes four tiles
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
@@ -21,6 +22,7 @@
 	desc = "Heavy duty plating designed to support shuttle construction and maintenance."
 	icon_state = "drydock"
 	floor_tile = /obj/item/stack/tile/drydock
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.1)
 
 /turf/open/floor/dock/drydock/crowbar_act(mob/living/user, obj/item/I)
 	for(var/obj/structure/lattice/lattice in contents)
