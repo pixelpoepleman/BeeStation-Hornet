@@ -63,6 +63,14 @@
 	if(exposed_temperature > 300)
 		PlasmaBurn(exposed_temperature)
 
+/turf/open/floor/mineral/plasma/salvage_vals(obj/item/salvaging/the_laser)
+	return list("delay" = 5, "power" = max_integrity * 10)
+
+/turf/open/floor/mineral/plasma/salvage_act(mob/user, obj/item/salvaging/the_laser)
+	PlasmaBurn(1000)
+	to_chat(user, span_danger("You should not have fired a laser at plasma..."))
+	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
+	return FALSE
 
 //GOLD
 

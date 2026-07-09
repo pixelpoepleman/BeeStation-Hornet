@@ -7,8 +7,11 @@
 	icon_state = "slag"
 	inhand_icon_state = "slag"
 
-	/// This will store recovered material later
 
+	force = 5 //In case you want to bludgeon someone with a piece of slag
+	throwforce = 10 //Public stonings should be more common
+
+/// This will store recovered material later
 /obj/item/slag/Initialize()
 	. = ..()
 	custom_materials = list()

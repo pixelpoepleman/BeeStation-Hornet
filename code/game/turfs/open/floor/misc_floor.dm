@@ -16,7 +16,6 @@
 	/// We don't consume any power, but we do require it
 	var/on = -1
 	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT * 0.4, /datum/material/glass=MINERAL_MATERIAL_AMOUNT * 0.4)
-	var/on = TRUE
 
 /turf/open/floor/circuit/Initialize(mapload)
 	SSmapping.nuke_tiles += src

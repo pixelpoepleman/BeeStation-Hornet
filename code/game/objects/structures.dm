@@ -12,6 +12,7 @@
 	armor_type = /datum/armor/obj_structure
 	burning_particles = /particles/smoke/burning
 	var/broken = FALSE
+	var/list/salvage_material = null
 
 /datum/armor/obj_structure
 	fire = 50
@@ -68,4 +69,25 @@
 
 /obj/structure/rust_heretic_act()
 	take_damage(500, BRUTE, MELEE, 1)
+	return TRUE
+
+/obj/structure/salvage_vals(obj/item/salvaging/the_laser)
+	if(!salvage_material)
+		return FALSE
+	return list("delay" = max_integrity * 0.05, "power" = max_integrity * 10)
+
+/obj/structure/salvage_act(mob/user, obj/item/salvaging/the_laser)
+
+	if(salvage_material)
+		var/obj/item/slag/slag = new /obj/item/slag(drop_location())
+		var/list/materials = list()
+
+		for(var/material in salvage_material)
+			materials[material] = salvage_material[material]
+
+		slag.set_custom_materials(materials)
+
+	to_chat(user, span_notice("You melt the [src] into slag!"))
+	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
+	qdel(src)
 	return TRUE

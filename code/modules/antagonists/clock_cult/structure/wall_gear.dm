@@ -5,6 +5,7 @@
 	unanchored_icon = "wall_gear"
 	max_integrity = 100
 	layer = BELOW_OBJ_LAYER
+	salvage_material = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT, /datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	desc = "A massive brass gear. You could probably secure or unsecure it with a wrench, or just climb over it."
 	break_message = span_warning("The gear breaks apart into shards of alloy!")
 	debris = list(

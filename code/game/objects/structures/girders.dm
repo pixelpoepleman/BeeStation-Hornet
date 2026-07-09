@@ -9,6 +9,7 @@
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 200
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*2)
 	base_icon_state = "girder"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_GIRDER)
@@ -359,6 +360,7 @@
 	state = GIRDER_REINF
 	girderpasschance = 0
 	max_integrity = 350
+	salvage_material = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*3, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT*0.2)
 
 //////////////////////////////////////////// cult girders //////////////////////////////////////////////
 ///they will get a proper smoothing icon later :D, but not today, courier pigeon's word! 4/09/24
@@ -467,6 +469,8 @@
 	smoothing_groups = null
 	canSmoothWith = null
 	can_displace = FALSE
+	salvage_material = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT, /datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+
 
 /*
 /obj/structure/girder/bronze/attackby(obj/item/W, mob/living/user, params)

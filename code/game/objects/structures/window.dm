@@ -24,7 +24,8 @@
 	var/fulltile = FALSE
 	var/glass_type = /obj/item/stack/sheet/glass
 	var/glass_amount = 1
-	var/list/salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	//var/list/salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	salvage_material = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	var/mutable_appearance/crack_overlay
 	var/real_explosion_block	//ignore this, just use explosion_block
 	var/breaksound = "shatter"

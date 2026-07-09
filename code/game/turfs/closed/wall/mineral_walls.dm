@@ -149,7 +149,6 @@
 	icon_state = "plasma_wall-0"
 	base_icon_state = "plasma_wall"
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
-	salvage_material = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.2) //Very purposefully reducing the amount of plasma salvaged by slagging
 	thermal_conductivity = 0.04
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_PLASMA_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_PLASMA_WALLS)
@@ -172,6 +171,17 @@
 		if(plasma_ignition(6))
 			new /obj/structure/girder/displaced(loc)
 	. = ..()
+
+/turf/closed/wall/mineral/plasma/salvage_vals(obj/item/salvaging/the_laser)
+	return list("delay" = 5, "power" = max_integrity * 10)
+
+/turf/closed/wall/mineral/plasma/salvage_act(mob/user, obj/item/salvaging/the_laser)
+	if(plasma_ignition(6))
+		new /obj/structure/girder/displaced(loc)
+
+	to_chat(user, span_danger("You should not have fired a laser at plasma..."))
+	log_attack("[key_name(user)] has salvaged [get_turf(src)] at [loc_name(src)] using [format_text(initial(the_laser.name))]")
+	return FALSE
 
 /turf/closed/wall/mineral/wood
 	name = "wooden wall"
